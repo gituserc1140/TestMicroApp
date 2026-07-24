@@ -1,53 +1,44 @@
-# Micro-app template
+# Hugging Face Streamlit Micro App
 
-This repository is a minimal, generic micro-app template built with Streamlit.
-It preserves a simple architecture intended to be easy to adapt for any
-API-driven micro-application.
+This repository is a Streamlit app where the end user provides a Hugging Face token in the frontend and uses it to run model inference through Hugging Face's Inference API.
 
-Contents
-- app.py — Streamlit entrypoint that gathers minimal user inputs and calls api_client.fetch_data()
-- api_client.py — API client module with a `make_request()` helper and a minimal `fetch_data()` example
-- ui.py — UI layout module that renders data using Streamlit
-- config/ — configuration module with placeholder settings
-- requirements.txt — minimal dependencies
+## Features
+- Streamlit frontend for prompt input
+- Frontend token entry (password field)
+- Configurable Hugging Face model name
+- Adjustable generation settings (`max_new_tokens`, `temperature`)
+- Generated output plus expandable raw API response
 
-Quick start
-1. Install dependencies
+## Project structure
+- `app.py` — Streamlit entrypoint
+- `api_client.py` — Hugging Face request logic
+- `ui.py` — rendering helpers
+- `config/settings.py` — defaults and env config
+- `requirements.txt` — dependencies
+
+## Quick start
+1. Install dependencies:
+   ```bash
    pip install -r requirements.txt
+   ```
 
-2. Run locally
+2. Run the app:
+   ```bash
    streamlit run app.py
+   ```
 
-Using the template
-- The primary integration point is api_client.fetch_data(). Replace the placeholder
-  implementation with calls to your API, including authentication, pagination,
-  and error handling. Keep fetch_data() independent of Streamlit so it remains
-  testable and reusable.
+3. In the UI, provide:
+   - a Hugging Face token
+   - model id (default is `mistralai/Mistral-7B-Instruct-v0.2`)
+   - prompt and generation settings
 
-- config/settings.py contains default values for API_BASE_URL and API_KEY. You
-  can set these using environment variables or provide values at runtime via
-  the Streamlit app input fields.
+## Environment variables
+- `HF_INFERENCE_BASE_URL` (default: `https://api-inference.huggingface.co/models`)
+- `DEFAULT_MODEL`
+- `DEFAULT_TIMEOUT`
+- `DEFAULT_MAX_NEW_TOKENS`
+- `DEFAULT_TEMPERATURE`
 
-- ui.py contains simple rendering logic with Streamlit. Modify or replace it to
-  match your UI needs (components, layout, charts, etc.).
-
-How to plug in a new API
-1. Update config/settings.py or set environment variables:
-   - API_BASE_URL: base URL for your API
-   - API_KEY: optional API key (alternatively, prompt users for the key in the UI)
-
-2. Implement the API calls in api_client.fetch_data() (or add helper functions):
-   - Use the make_request() helper for consistent URL building and timeouts
-   - Add authentication (bearer tokens, API keys, custom headers) as needed
-   - Parse and return a plain Python dict with a shape the UI expects
-
-3. Adjust the UI (ui.py) and app behavior (app.py) to pass parameters and show
-   the results in a user-friendly way.
-
-Extending the template
-- Add tests for api_client.fetch_data() and UI rendering logic.
-- Add a Dockerfile or GitHub Actions workflow for CI and deployment.
-- Replace the placeholder items with richer domain models and components.
-
-License
-Add a LICENSE file appropriate for your project.
+## Notes
+- Tokens are not persisted by the app.
+- Ensure your Hugging Face token has access to the selected model.
