@@ -14,7 +14,7 @@ hf_token = st.text_input("Hugging Face token", type="password", help="Token is s
 model = st.text_input("Model", value=settings.DEFAULT_MODEL)
 prompt = st.text_area("Prompt", value="Write a short product description for a reusable water bottle.")
 max_new_tokens = st.slider("Max new tokens", min_value=16, max_value=1024, value=settings.DEFAULT_MAX_NEW_TOKENS, step=8)
-temperature = st.slider("Temperature", min_value=0.1, max_value=2.0, value=float(settings.DEFAULT_TEMPERATURE), step=0.1)
+temperature = st.slider("Temperature", min_value=0.1, max_value=2.0, value=settings.DEFAULT_TEMPERATURE, step=0.1)
 
 if st.button("Generate"):
     try:

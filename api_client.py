@@ -35,17 +35,19 @@ def generate_text(
 ) -> Dict[str, Any]:
     """Call the Hugging Face Inference API for text generation."""
     token = token.strip()
+    prompt = prompt.strip()
+    model = model.strip()
 
     if not token:
         raise ValueError("A Hugging Face token is required.")
-    if not prompt.strip():
+    if not prompt:
         raise ValueError("Prompt cannot be empty.")
-    if not model.strip():
+    if not model:
         raise ValueError("Model cannot be empty.")
 
-    url = f"{settings.HF_INFERENCE_BASE_URL.rstrip('/')}/{model.strip()}"
+    url = f"{settings.HF_INFERENCE_BASE_URL.rstrip('/')}/{model}"
     headers = {
-        "Authorization": "{} {}".format("Bearer", token),
+        "Authorization": f"{'Bearer'} {token}",
         "Content-Type": "application/json",
     }
     body = {
@@ -66,7 +68,7 @@ def generate_text(
         parsed = response.text
 
     return {
-        "model": model.strip(),
+        "model": model,
         "prompt": prompt,
         "raw_response": parsed,
         "generated_text": _extract_generated_text(parsed),
