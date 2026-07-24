@@ -1,7 +1,7 @@
 """UI layout helpers for the Hugging Face Streamlit app."""
 
-from typing import Any, Dict
 import streamlit as st
+from typing import Any, Dict
 
 
 def render_generation_result(data: Dict[str, Any]) -> None:
