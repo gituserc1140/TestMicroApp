@@ -1,11 +1,9 @@
-"""Configuration settings with sensible placeholders.
-
-These settings are intentionally simple. For production use consider reading
-secrets from environment variables, a .env file, or a secret manager.
-"""
+"""Configuration settings for the Hugging Face Streamlit micro-app."""
 
 import os
 
-API_BASE_URL = os.getenv("API_BASE_URL", "https://api.example.com")
-API_KEY = os.getenv("API_KEY", None)
-DEFAULT_TIMEOUT = int(os.getenv("DEFAULT_TIMEOUT", "10"))
+HF_INFERENCE_BASE_URL = os.getenv("HF_INFERENCE_BASE_URL", "https://api-inference.huggingface.co/models")
+DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "mistralai/Mistral-7B-Instruct-v0.2")
+DEFAULT_TIMEOUT = int(os.getenv("DEFAULT_TIMEOUT", "30"))
+DEFAULT_MAX_NEW_TOKENS = int(os.getenv("DEFAULT_MAX_NEW_TOKENS", "128"))
+DEFAULT_TEMPERATURE = float(os.getenv("DEFAULT_TEMPERATURE", "0.7"))
