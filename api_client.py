@@ -34,6 +34,8 @@ def generate_text(
     temperature: float = 0.7,
 ) -> Dict[str, Any]:
     """Call the Hugging Face Inference API for text generation."""
+    token = token.strip()
+
     if not token:
         raise ValueError("A Hugging Face token is required.")
     if not prompt.strip():
@@ -43,7 +45,7 @@ def generate_text(
 
     url = f"{settings.HF_INFERENCE_BASE_URL.rstrip('/')}/{model.strip()}"
     headers = {
-        "Authorization": "Bearer " + token,
+        "Authorization": "{} {}".format("Bearer", token),
         "Content-Type": "application/json",
     }
     body = {

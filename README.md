@@ -10,11 +10,11 @@ This repository is a Streamlit app where the end user provides a Hugging Face to
 - Generated output plus expandable raw API response
 
 ## Project structure
-- `/home/runner/work/TestMicroApp/TestMicroApp/app.py` — Streamlit entrypoint
-- `/home/runner/work/TestMicroApp/TestMicroApp/api_client.py` — Hugging Face request logic
-- `/home/runner/work/TestMicroApp/TestMicroApp/ui.py` — rendering helpers
-- `/home/runner/work/TestMicroApp/TestMicroApp/config/settings.py` — defaults and env config
-- `/home/runner/work/TestMicroApp/TestMicroApp/requirements.txt` — dependencies
+- `app.py` — Streamlit entrypoint
+- `api_client.py` — Hugging Face request logic
+- `ui.py` — rendering helpers
+- `config/settings.py` — defaults and env config
+- `requirements.txt` — dependencies
 
 ## Quick start
 1. Install dependencies:
