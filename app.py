@@ -1,6 +1,7 @@
 """Streamlit app for Hugging Face text generation using user-provided token."""
 
 import streamlit as st
+
 import api_client
 import ui
 from config import settings

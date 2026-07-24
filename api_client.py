@@ -47,7 +47,7 @@ def generate_text(
 
     url = f"{settings.HF_INFERENCE_BASE_URL.rstrip('/')}/{model}"
     headers = {
-        "Authorization": " ".join(("Bearer", token)),
+        "Authorization": "Bearer " + token,
         "Content-Type": "application/json",
     }
     body = {
