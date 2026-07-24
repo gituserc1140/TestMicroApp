@@ -46,8 +46,9 @@ def generate_text(
         raise ValueError("Model cannot be empty.")
 
     url = f"{settings.HF_INFERENCE_BASE_URL.rstrip('/')}/{model}"
+    bearer_prefix = "Bearer"
     headers = {
-        "Authorization": f"{'Bearer'} {token}",
+        "Authorization": f"{bearer_prefix} {token}",
         "Content-Type": "application/json",
     }
     body = {
